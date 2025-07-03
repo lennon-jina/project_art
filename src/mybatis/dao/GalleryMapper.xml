@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.art.dao.IGalleryDAO">
+
+    <select id="selectAllImages" resultType="com.art.vo.GalleryVO">
+        SELECT
+            id,
+            title,
+            image_url
+        FROM artworks
+        ORDER BY id
+    </select>
+    
+    <select id="selectDistinctAuthors" resultType="String">
+	    SELECT DISTINCT artist FROM artworks
+	    WHERE artist IS NOT NULL
+	</select>
+
+</mapper>

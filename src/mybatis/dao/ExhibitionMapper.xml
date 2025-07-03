@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="exhibition">
+    <!-- Exhibition 결과 매핑 -->
+    <resultMap id="exhibitionResultMap" type="com.art.vo.ExhibitionVO">
+        <id property="id" column="id" />
+        <result property="exhibitionId" column="exhibition_id" />
+        <result property="title" column="title" />
+        <result property="startDate" column="start_date" />
+        <result property="endDate" column="end_date" />
+        <result property="place" column="place" />
+        <result property="ticketInfo" column="ticket_info" />
+        <result property="introduction" column="introduction" />
+        <result property="imageUrl" column="image_url" />
+        <result property="detailUrl" column="detail_url" />
+        <result property="genre" column="genre" />
+        <result property="duration" column="duration" />
+        <result property="numberPages" column="number_pages" />
+        <result property="tableOfContents" column="table_of_contents" />
+        <result property="author" column="author" />
+        <result property="contactPoint" column="contact_point" />
+        <result property="actor" column="actor" />
+        <result property="contributor" column="contributor" />
+        <result property="audience" column="audience" />
+        <result property="charge" column="charge" />
+        <result property="spatialCoverage" column="spatial_coverage" />
+        <result property="subDescription" column="sub_description" />
+        <result property="collectedDate" column="collected_date" />
+        <result property="issuedDate" column="issued_date" />
+        <result property="viewCount" column="view_count" />
+        <result property="eventSite" column="event_site" />
+    </resultMap>
+    
+    <!-- 전시회 정보 가져오기 -->
+    <select id="getExhibitionById" parameterType="String" resultMap="exhibitionResultMap">
+        SELECT *
+        FROM exhibitions
+        WHERE exhibition_id = #{exhibitionId}
+    </select>
+    
+    <!-- 전시회 목록 가져오기 -->
+    <select id="getExhibitionList" parameterType="map" resultMap="exhibitionResultMap">
+        SELECT *
+        FROM (
+            SELECT 
+                a.*, 
+                ROWNUM rnum 
+            FROM (
+                SELECT *
+                FROM exhibitions
+                <where>
+                    <if test="state != null">
+                        <choose>
+                            <when test="state == 'current'">
+                                AND SYSDATE BETWEEN start_date AND end_date
+                            </when>
+                            <when test="state == 'upcoming'">
+                                AND start_date > SYSDATE
+                            </when>
+                            <when test="state == 'ended'">
+                                AND end_date &lt; SYSDATE
+                            </when>
+                        </choose>
+                    </if>
+                    <if test="keyword != null and keyword != ''">
+                        AND (
+                            UPPER(title) LIKE UPPER('%' || #{keyword} || '%')
+                            OR UPPER(introduction) LIKE UPPER('%' || #{keyword} || '%')
+                            OR UPPER(place) LIKE UPPER('%' || #{keyword} || '%')
+                        )
+                    </if>
+                </where>
+                ORDER BY start_date DESC
+            ) a
+            WHERE ROWNUM &lt;= #{limit} + #{offset}
+        )
+        WHERE rnum > #{offset}
+    </select>
+    
+    <!-- 전시회 총 개수 조회 -->
+    <select id="getTotalExhibitionCount" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM exhibitions
+        <where>
+            <if test="state != null">
+                <choose>
+                    <when test="state == 'current'">
+                        AND SYSDATE BETWEEN start_date AND end_date
+                    </when>
+                    <when test="state == 'upcoming'">
+                        AND start_date > SYSDATE
+                    </when>
+                    <when test="state == 'ended'">
+                        AND end_date &lt; SYSDATE
+                    </when>
+                </choose>
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND (
+                    UPPER(title) LIKE UPPER('%' || #{keyword} || '%')
+                    OR UPPER(introduction) LIKE UPPER('%' || #{keyword} || '%')
+                    OR UPPER(place) LIKE UPPER('%' || #{keyword} || '%')
+                )
+            </if>
+        </where>
+    </select>
+    
+    <!-- 현재 진행 중인 전시회 조회 -->
+    <select id="getCurrentExhibitions" resultMap="exhibitionResultMap">
+        SELECT *
+        FROM exhibitions
+        WHERE SYSDATE BETWEEN start_date AND end_date
+        ORDER BY start_date DESC
+    </select>
+    
+    <!-- 예정된 전시회 조회 -->
+    <select id="getUpcomingExhibitions" resultMap="exhibitionResultMap">
+        SELECT *
+        FROM exhibitions
+        WHERE start_date > SYSDATE
+        ORDER BY start_date ASC
+    </select>
+    
+    <!-- 종료된 전시회 조회 -->
+    <select id="getEndedExhibitions" resultMap="exhibitionResultMap">
+        SELECT *
+        FROM exhibitions
+        WHERE end_date &lt; SYSDATE
+        ORDER BY end_date DESC
+    </select>
+    
+    <!-- 전시회 검색 -->
+    <select id="searchExhibitions" parameterType="String" resultMap="exhibitionResultMap">
+        SELECT *
+        FROM exhibitions
+        WHERE UPPER(title) LIKE UPPER('%' || #{keyword} || '%')
+           OR UPPER(introduction) LIKE UPPER('%' || #{keyword} || '%')
+           OR UPPER(place) LIKE UPPER('%' || #{keyword} || '%')
+        ORDER BY start_date DESC
+    </select>
+    
+    <!-- 전시회 정보 저장 -->
+    <insert id="insertExhibition" parameterType="com.art.vo.ExhibitionVO">
+        INSERT INTO exhibitions (
+            id,
+            exhibition_id,
+            title,
+            start_date,
+            end_date,
+            place,
+            ticket_info,
+            introduction,
+            image_url,
+            detail_url,
+            genre,
+            duration,
+            number_pages,
+            table_of_contents,
+            author,
+            contact_point,
+            actor,
+            contributor,
+            audience,
+            charge,
+            spatial_coverage,
+            sub_description,
+            collected_date,
+            issued_date,
+            view_count,
+            event_site,
+            reg_date,
+            update_date
+        ) VALUES (
+            exhibitions_seq.NEXTVAL,
+            #{exhibitionId},
+            #{title},
+            TO_DATE(#{startDate}, 'YYYY-MM-DD'),
+            TO_DATE(#{endDate}, 'YYYY-MM-DD'),
+            #{place},
+            #{ticketInfo},
+            #{introduction},
+            #{imageUrl},
+            #{detailUrl},
+            #{genre},
+            #{duration},
+            #{numberPages},
+            #{tableOfContents},
+            #{author},
+            #{contactPoint},
+            #{actor},
+            #{contributor},
+            #{audience},
+            #{charge},
+            #{spatialCoverage},
+            #{subDescription},
+            #{collectedDate},
+            #{issuedDate},
+            #{viewCount},
+            #{eventSite},
+            SYSTIMESTAMP,
+            SYSTIMESTAMP
+        )
+    </insert>
+    
+    <!-- 전시회 정보 업데이트 -->
+    <update id="updateExhibition" parameterType="com.art.vo.ExhibitionVO">
+        UPDATE exhibitions SET
+            title = #{title},
+            start_date = TO_DATE(#{startDate}, 'YYYY-MM-DD'),
+            end_date = TO_DATE(#{endDate}, 'YYYY-MM-DD'),
+            place = #{place},
+            ticket_info = #{ticketInfo},
+            introduction = #{introduction},
+            image_url = #{imageUrl},
+            detail_url = #{detailUrl},
+            genre = #{genre},
+            duration = #{duration},
+            number_pages = #{numberPages},
+            table_of_contents = #{tableOfContents},
+            author = #{author},
+            contact_point = #{contactPoint},
+            actor = #{actor},
+            contributor = #{contributor},
+            audience = #{audience},
+            charge = #{charge},
+            spatial_coverage = #{spatialCoverage},
+            sub_description = #{subDescription},
+            collected_date = #{collectedDate},
+            issued_date = #{issuedDate},
+            view_count = #{viewCount},
+            event_site = #{eventSite},
+            update_date = SYSTIMESTAMP
+        WHERE exhibition_id = #{exhibitionId}
+    </update>
+    
+    <!-- 전시회 삭제 -->
+    <delete id="deleteExhibition" parameterType="String">
+        DELETE FROM exhibitions WHERE exhibition_id = #{exhibitionId}
+    </delete>
+</mapper>

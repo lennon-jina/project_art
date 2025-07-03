@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.art.dao.IReviewDAO">
+    <insert id="insertReview" parameterType="com.art.vo.ReviewVO" useGeneratedKeys="true" keyProperty="reviewId">
+        INSERT INTO REVIEW (
+            REVIEW_ID, USER_ID, QUESTION_ID, WRONG_CHOICE_ID, REVIEW_DATE
+        ) VALUES (
+            REVIEW_SEQ.NEXTVAL, #{userId}, #{questionId}, #{wrongChoiceId}, SYSTIMESTAMP
+        )
+        <selectKey keyProperty="reviewId" resultType="int" order="AFTER">
+            SELECT REVIEW_SEQ.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <select id="selectReviewById" resultType="com.art.vo.ReviewVO">
+        SELECT * FROM REVIEW WHERE REVIEW_ID = #{reviewId}
+    </select>
+    
+    <select id="selectReviewsByUserId" resultType="com.art.vo.ReviewVO">
+        SELECT * FROM REVIEW WHERE USER_ID = #{userId} ORDER BY REVIEW_DATE DESC
+    </select>
+    
+    <select id="selectReviewsByQuestionId" resultType="com.art.vo.ReviewVO">
+        SELECT * FROM REVIEW WHERE QUESTION_ID = #{questionId} ORDER BY REVIEW_DATE DESC
+    </select>
+    
+    <select id="selectReviewByUserIdAndQuestionId" resultType="com.art.vo.ReviewVO">
+        SELECT * FROM REVIEW 
+        WHERE USER_ID = #{userId} AND QUESTION_ID = #{questionId}
+        ORDER BY REVIEW_DATE DESC
+        FETCH FIRST 1 ROW ONLY
+    </select>
+    
+    <delete id="deleteReview">
+        DELETE FROM REVIEW WHERE REVIEW_ID = #{reviewId}
+    </delete>
+</mapper>

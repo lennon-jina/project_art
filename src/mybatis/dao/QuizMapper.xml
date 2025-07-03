@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.art.dao.IQuizDAO">
+    <insert id="insertQuiz" parameterType="com.art.vo.QuizVO">
+	    <selectKey keyProperty="quizId" resultType="int" order="BEFORE">
+	        SELECT QUIZ_SEQ.NEXTVAL FROM DUAL
+	    </selectKey>
+	    INSERT INTO QUIZ (
+	        QUIZ_ID, ARTWORK_ID, QUIZ_TITLE, CREATED_DATE
+	    ) VALUES (
+	        #{quizId}, #{artworkId}, #{quizTitle}, SYSTIMESTAMP
+	    )
+	</insert>
+    
+    <select id="selectQuizById" resultType="com.art.vo.QuizVO">
+        SELECT * FROM QUIZ WHERE QUIZ_ID = #{quizId}
+    </select>
+    
+    <select id="selectQuizByArtworkId" resultType="com.art.vo.QuizVO">
+        SELECT * FROM QUIZ WHERE ARTWORK_ID = #{artworkId}
+    </select>
+    
+    <select id="selectAllQuizzes" resultType="com.art.vo.QuizVO">
+        SELECT * FROM QUIZ ORDER BY QUIZ_ID
+    </select>
+    
+    <update id="updateQuiz" parameterType="com.art.vo.QuizVO">
+        UPDATE QUIZ
+        SET QUIZ_TITLE = #{quizTitle}
+        WHERE QUIZ_ID = #{quizId}
+    </update>
+    
+    <delete id="deleteQuiz">
+        DELETE FROM QUIZ WHERE QUIZ_ID = #{quizId}
+    </delete>
+</mapper>

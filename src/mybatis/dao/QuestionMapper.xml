@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.art.dao.IQuestionDAO">
+    <insert id="insertQuestion" parameterType="com.art.vo.QuestionVO" useGeneratedKeys="true" keyProperty="questionId">
+        INSERT INTO QUESTION (
+            QUESTION_ID, QUIZ_ID, QUESTION_TYPE, QUESTION_TEXT, CORRECT_ANSWER, ORDER_NUM
+        ) VALUES (
+            SEQ_QUESTION.NEXTVAL, #{quizId}, #{questionType}, #{questionText}, #{correctAnswer}, #{orderNum}
+        )
+        <selectKey keyProperty="questionId" resultType="int" order="AFTER">
+            SELECT SEQ_QUESTION.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <select id="selectQuestionById" resultType="com.art.vo.QuestionVO">
+        SELECT * FROM QUESTION WHERE QUESTION_ID = #{questionId}
+    </select>
+    
+    <select id="selectQuestionsByQuizId" resultType="com.art.vo.QuestionVO">
+        SELECT * FROM QUESTION WHERE QUIZ_ID = #{quizId} ORDER BY ORDER_NUM
+    </select>
+    
+    <update id="updateQuestion" parameterType="com.art.vo.QuestionVO">
+        UPDATE QUESTION
+        SET QUESTION_TYPE = #{questionType},
+            QUESTION_TEXT = #{questionText},
+            CORRECT_ANSWER = #{correctAnswer},
+            ORDER_NUM = #{orderNum}
+        WHERE QUESTION_ID = #{questionId}
+    </update>
+    
+    <delete id="deleteQuestion">
+        DELETE FROM QUESTION WHERE QUESTION_ID = #{questionId}
+    </delete>
+    
+    <delete id="deleteQuestionsByQuizId">
+        DELETE FROM QUESTION WHERE QUIZ_ID = #{quizId}
+    </delete>
+</mapper>

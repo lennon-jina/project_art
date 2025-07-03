@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.art.vo.ArtworkVO" alias="ArtworkVO"/>
+        <typeAlias type="com.art.vo.UserResponseVO" alias="UserResponseVO"/>
+        <typeAlias type="com.art.vo.QuizVO" alias="QuizVO"/>
+        <typeAlias type="com.art.vo.QuestionVO" alias="QuestionVO"/>
+        <typeAlias type="com.art.vo.ChoiceVO" alias="ChoiceVO"/>
+    </typeAliases>
+    
+    <mappers>
+        <mapper resource="mybatis/dao/ArtworkMapper.xml"/>
+        <mapper resource="mybatis/dao/UserResponseMapper.xml"/>
+        <mapper resource="mybatis/dao/AchievementDAO.xml"/>
+        <mapper resource="mybatis/dao/QuizMapper.xml"/>
+        <mapper resource="mybatis/dao/QuestionMapper.xml"/>
+        <mapper resource="mybatis/dao/ChoiceMapper.xml"/>
+    </mappers>
+    
+</configuration>

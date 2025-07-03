@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.art.dao.IUserResponseDAO">
+
+    <insert id="insertUserResponse" parameterType="com.art.vo.UserResponseVO">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            SELECT user_response_seq.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO user_responses (id, quiz_quest_id, selected_option, is_correct, response_date)
+        VALUES (#{id}, #{quizQuestId}, #{selectedOption}, #{correctYn}, #{responseDate})
+    </insert>
+
+    <select id="selectUserResponseById" resultType="com.art.vo.UserResponseVO">
+        SELECT id, quiz_quest_id AS quizQuestId, selected_option AS selectedOption, 
+               is_correct AS correctYn, response_date AS responseDate
+        FROM user_responses 
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectUserResponsesByQuizQuestId" resultType="com.art.vo.UserResponseVO">
+        SELECT id, quiz_quest_id AS quizQuestId, selected_option AS selectedOption, 
+               is_correct AS correctYn, response_date AS responseDate
+        FROM user_responses 
+        WHERE quiz_quest_id = #{quizQuestId}
+        ORDER BY response_date DESC
+    </select>
+
+    <select id="selectUserResponsesByArtworkId" resultType="com.art.vo.UserResponseVO">
+        SELECT ur.id, ur.quiz_quest_id AS quizQuestId, ur.selected_option AS selectedOption, 
+               ur.is_correct AS correctYn, ur.response_date AS responseDate
+        FROM user_responses ur
+        JOIN quiz_questions qq ON ur.quiz_quest_id = qq.id
+        WHERE qq.artwork_id = #{artworkId}
+        ORDER BY ur.response_date DESC
+    </select>
+
+</mapper>

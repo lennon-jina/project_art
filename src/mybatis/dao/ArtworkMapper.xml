@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.art.dao.IArtworkDAO">
+    <insert id="insertArtwork" parameterType="com.art.vo.ArtworkVO">
+        INSERT INTO artwork (
+            TITLE, IMAGE_URL, ARTIST, DATE_DISPLAY, 
+            STYLE_TITLE, TECHNIQUE_TITLES, TERM_TITLES, API_ID
+        ) VALUES (
+            #{title}, #{imageUrl}, #{artist}, #{dateDisplay},
+            #{styleTitle}, #{techniqueTitles}, #{termTitles}, #{apiId}
+        )
+    </insert>
+    
+    <update id="updateArtwork">
+        UPDATE artwork
+        SET TITLE = #{title}, 
+            IMAGE_URL = #{imageUrl}, 
+            ARTIST = #{artist}, 
+            DATE_DISPLAY = #{dateDisplay},
+            STYLE_TITLE = #{styleTitle},
+            TECHNIQUE_TITLES = #{techniqueTitles},
+            TERM_TITLES = #{termTitles}
+        WHERE API_ID = #{apiId}
+    </update>
+    
+    <select id="selectArtworkByApiId" resultType="com.art.vo.ArtworkVO">
+        SELECT 
+            ARTWORK_ID as artworkId,
+            TITLE as title,
+            IMAGE_URL as imageUrl,
+            ARTIST as artist,
+            DATE_DISPLAY as dateDisplay,
+            STYLE_TITLE as styleTitle,
+            TECHNIQUE_TITLES as techniqueTitles,
+            TERM_TITLES as termTitles,
+            API_ID as apiId,
+            CREATED_DATE as createdDate
+        FROM artwork 
+        WHERE API_ID = #{apiId}
+    </select>
+    
+    <select id="selectArtworkById" resultType="com.art.vo.ArtworkVO">
+        SELECT 
+            ARTWORK_ID as artworkId,
+            TITLE as title,
+            IMAGE_URL as imageUrl,
+            ARTIST as artist,
+            DATE_DISPLAY as dateDisplay,
+            STYLE_TITLE as styleTitle,
+            TECHNIQUE_TITLES as techniqueTitles,
+            TERM_TITLES as termTitles,
+            API_ID as apiId,
+            CREATED_DATE as createdDate
+        FROM artwork 
+        WHERE ARTWORK_ID = #{artworkId}
+    </select>
+    
+    <select id="selectAllArtworks" resultType="com.art.vo.ArtworkVO">
+        SELECT 
+            ARTWORK_ID as artworkId,
+            TITLE as title,
+            IMAGE_URL as imageUrl,
+            ARTIST as artist,
+            DATE_DISPLAY as dateDisplay,
+            STYLE_TITLE as styleTitle,
+            TECHNIQUE_TITLES as techniqueTitles,
+            TERM_TITLES as termTitles,
+            API_ID as apiId,
+            CREATED_DATE as createdDate
+        FROM artwork 
+        ORDER BY ARTWORK_ID
+    </select>
+    
+    <select id="selectArtworksByApiIds" resultType="com.art.vo.ArtworkVO">
+        SELECT 
+            ARTWORK_ID as artworkId,
+            TITLE as title,
+            IMAGE_URL as imageUrl,
+            ARTIST as artist,
+            DATE_DISPLAY as dateDisplay,
+            STYLE_TITLE as styleTitle,
+            TECHNIQUE_TITLES as techniqueTitles,
+            TERM_TITLES as termTitles,
+            API_ID as apiId,
+            CREATED_DATE as createdDate
+        FROM artwork 
+        WHERE API_ID IN
+        <foreach collection="apiIds" item="apiId" open="(" separator="," close=")">
+            #{apiId}
+        </foreach>
+    </select>
+    
+    <select id="getAllArtworks" resultType="com.art.vo.ArtworkVO">
+        SELECT 
+            ARTWORK_ID as artworkId,
+            TITLE as title,
+            IMAGE_URL as imageUrl,
+            ARTIST as artist,
+            DATE_DISPLAY as dateDisplay,
+            STYLE_TITLE as styleTitle,
+            TECHNIQUE_TITLES as techniqueTitles,
+            TERM_TITLES as termTitles,
+            API_ID as apiId,
+            CREATED_DATE as createdDate
+        FROM artwork 
+        ORDER BY ARTWORK_ID
+    </select>
+</mapper>
