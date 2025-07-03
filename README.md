@@ -1,1 +1,63 @@
-# project_art
+# 🎨 Visual Explore
+
+**온라인으로 미술을 보고, 퀴즈를 풀고, 나아가 감상하게 만드는 예술 탐색형 웹 서비스**
+
+> "어렵고 멀게 느껴졌던 미술, 이제는 즐겁고 쉽게!"  
+> 사용자가 미술 작품에 대한 흥미를 자연스럽게 쌓고, 작품 설명 기반 퀴즈를 통해 몰입감을 높이며, 실제 전시 관람까지 이어질 수 있도록 돕는 아트 여정 플랫폼입니다.
+
+---
+
+## 🌐 데모 페이지
+
+🔗 [Demo Link]() (배포한 경우 링크 추가)
+
+---
+
+## 🖼 주요 기능
+
+### 1. 갤러리 (작품 감상)
+- Art Institute of Chicago API를 통해 작품 정보를 불러옴
+- Google Translate API로 작품 설명을 자동 번역하여 자연스럽게 감상 가능
+- 각 작품별 상세 페이지 제공 (이미지, 작가, 연도, 설명 등)
+
+### 2. 퀴즈 (작품 기반 문제풀이)
+- 작품 메타데이터(JSON)를 바탕으로 자동 퀴즈 생성
+- 정답률에 따라 작가별 칭호 부여 (예: 고흐 마스터, 고갱 마스터)
+- 퀴즈는 객관식으로 제공되며, 사용자의 히스토리가 DB에 누적 저장됨
+
+### 3. 전시회 일정
+- 문화체육관광부 전시회 API 연동
+- 최신 전시회 정보를 카드 형식으로 제공
+- Fallback 처리(로컬 캐시)로 API 오류/지연 시 안정성 확보
+
+### 4. 로그인 / 회원가입
+- Oracle DB 연동 + bcrypt 해시 기반 암호화
+- 세션 기반 인증 유지 및 보호
+- 로그인 유저만 퀴즈 풀이 및 칭호 저장 가능
+
+---
+
+## 🧑‍💻 기술 스택
+
+| 분류 | 사용 기술 |
+|------|-----------|
+| 프론트엔드 | HTML, CSS, JavaScript, jQuery, GSAP |
+| 백엔드 | Python (Flask), OracleDB |
+| API | Art Institute of Chicago API, Google Translate API, 문화체육관광부 전시회 API |
+| 보안 | bcrypt 해시 알고리즘 |
+| 기타 | 세션 기반 인증, 비동기 처리(fetch), 예외 처리 및 fallback 구현 |
+
+---
+
+## ⚙️ 설치 및 실행 방법
+
+```bash
+# 1. 가상 환경 생성 및 활성화
+python -m venv venv
+source venv/bin/activate  # Windows는 venv\Scripts\activate
+
+# 2. 필요한 패키지 설치
+pip install -r requirements.txt
+
+# 3. Flask 앱 실행
+python app.py
