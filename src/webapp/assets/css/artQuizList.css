@@ -1,0 +1,303 @@
+/* 스크롤 관련 최적화 */
+.scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    will-change: scroll-position;
+    user-select: none;
+    cursor: grab;
+}
+
+.scroll-container:active {
+    cursor: grabbing;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.section-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 600vw;
+    height: 100vh;
+    scroll-snap-type: x mandatory;
+}
+
+.section {
+    flex: 0 0 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+}/* 기본 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+/* 스크롤 컨테이너 - 전체 페이지를 감싸는 역할 */
+.scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* 커서 스타일 */
+body {
+    cursor: default;
+}
+
+.scroll-container {
+    cursor: grab;
+}
+
+.scroll-container:active {
+    cursor: grabbing;
+}
+
+/* 그라데이션 배경 */
+.gradient-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600vw;
+    height: 100vh;
+    z-index: -1;
+    background: linear-gradient(to right, 
+        #F9D100 0%, #F9D100 12%, 
+        #F9D100 12%, #FF5621 28%, 
+        #FF5621 28%, #E91E63 45%, 
+        #E91E63 45%, #3F51B5 62%, 
+        #3F51B5 62%, #4CAF50 78%, 
+        #4CAF50 78%, #009688 100%
+    );
+    will-change: transform;
+}
+
+/* 섹션 래퍼 */
+.section-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 600vw;
+    height: 100vh;
+}
+
+/* 각 섹션 스타일 */
+.section {
+    flex: 0 0 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 배경 텍스트 스타일 */
+.background-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.background-text .large-text {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    font-size: 15vw; /* 크기 줄임 */
+    font-weight: 900;
+    line-height: 0.8;
+    opacity: 0.15;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.background-text .medium-text {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    font-size: 8vw; /* 크기 줄임 */
+    font-weight: 900;
+    opacity: 0.15;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* 콘텐츠 스타일 */
+.content {
+    padding: 3rem; /* 패딩 줄임 */
+    color: white;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 6vh; /* 상단 패딩 줄임 */
+    z-index: 1;
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.text-content {
+    width: 50%;
+    padding-right: 1.5rem; /* 패딩 줄임 */
+}
+
+h1 {
+    font-size: 4rem; /* 크기 줄임 */
+    font-weight: 900;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+}
+
+.artwork-info {
+    margin-top: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.artwork-info h2 {
+    font-size: 1.3rem; /* 크기 줄임 */
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.artwork-info h3 {
+    font-size: 2.2rem; /* 크기 줄임 */
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.artwork-description {
+    max-width: 60%;
+    font-size: 1rem; /* 크기 줄임 */
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.artwork-container {
+    width: 35%; /* 더 작게 */
+    height: 50vh; /* 높이 고정 */
+    overflow: hidden;
+    margin-top: auto;
+    margin-bottom: 4vh;
+    margin-left: -3rem; /* 사진만 왼쪽으로 이동 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artwork {
+    width: auto;
+    height: 100%; /* 컨테이너 높이에 맞춤 */
+    max-width: 100%;
+    object-fit: contain;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.artwork:hover {
+    transform: scale(1.02);
+}
+
+/* 색상 조정 유지 */
+#section1, #section6 {
+    color: black;
+}
+
+#section1 .background-text .large-text,
+#section1 .background-text .medium-text,
+#section6 .background-text .large-text,
+#section6 .background-text .medium-text {
+    color: black;
+}
+
+#section2, #section3, #section4, #section5 {
+    color: white;
+}
+
+#section2 .background-text .large-text,
+#section2 .background-text .medium-text,
+#section3 .background-text .large-text,
+#section3 .background-text .medium-text,
+#section4 .background-text .large-text,
+#section4 .background-text .medium-text,
+#section5 .background-text .large-text,
+#section5 .background-text .medium-text {
+    color: white;
+}
+
+/* 미디어 쿼리 */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .artwork-info h2 {
+        font-size: 1rem;
+    }
+    
+    .artwork-info h3 {
+        font-size: 1.8rem;
+    }
+    
+    .artwork-description {
+        max-width: 90%;
+        font-size: 0.9rem;
+    }
+    
+    .artwork-container {
+        width: 80%;
+    }
+    
+    .content {
+        padding: 1.5rem;
+    }
+    
+    .background-text .large-text {
+        font-size: 20vw;
+    }
+    
+    .background-text .medium-text {
+        font-size: 12vw;
+    }
+}

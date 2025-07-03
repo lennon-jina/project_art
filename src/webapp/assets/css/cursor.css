@@ -1,0 +1,63 @@
+/* 커스텀 커서 기본 스타일 */
+.custom-cursor {
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 0.3s ease;
+}
+
+/* 각 섹션에 따른 커서 이미지 변경 */
+.cursor-1 {
+    background-image: url('${pageContext.request.contextPath}/assets/img/van.png');
+}
+
+.cursor-2 {
+    background-image: url('${pageContext.request.contextPath}/assets/img/picaso.png');
+}
+
+.cursor-3 {
+    background-image: url('${pageContext.request.contextPath}/assets/img/van2.png');
+}
+
+.cursor-4 {
+    background-image: url('${pageContext.request.contextPath}/assets/img/picaso2.png');
+}
+
+.cursor-5 {
+    background-image: url('${pageContext.request.contextPath}/assets/img/mar.png');
+}
+
+.cursor-6 {
+    background-image: url('${pageContext.request.contextPath}/assets/img/mar2.png');
+}
+
+/* 기본 커서 숨기기 */
+body, .scroll-container, .section, .artwork {
+    cursor: auto;
+}
+
+/* 스크롤 관련 최적화 */
+.scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    will-change: scroll-position;
+    user-select: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}

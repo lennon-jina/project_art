@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "PP Editorial Old";
+    background-color: #042D29;
+    color: #DB78C56;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #042D29;
+    color: #B78C56;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.count-wrapper {
+    position: relative;
+    width: 180px;
+    height: 360px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    will-change: transform;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.count {
+    position: relative;
+    width: 1080px;
+    height: 360px;
+    display: flex;
+    transform: translateX(-1080px);
+    will-change: transform;
+}
+
+.digit {
+    position: relative;
+    width: 180px;
+    height: 360px;
+}
+
+.digit h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    font-size: 360px;
+    font-weight: lighter;
+    line-height: 1;
+}
+
+.revealer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.site-info {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125em;
+}
+
+.line {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    height: 18px;
+}
+
+.line p {
+    position: relative;
+    font-family: "PP Neue Montreal";
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.125px;
+    opacity: 0.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translateY(18px);
+    will-change: transform;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    width: 70px;
+    height: 70px;
+    background-color: #D4C9B4;
+    border-radius: 100%;
+    transform: scale(0);
+    display: flex;           /* 추가: flex로 설정하여 내부 아이콘 중앙 정렬 */
+    justify-content: center; /* 추가: 가로 중앙 정렬 */
+    align-items: center;     /* 추가: 세로 중앙 정렬 */
+    overflow: hidden; /* 이미지가 버튼 밖으로 나가지 않도록 */
+    padding: 0;
+    margin: 0;
+    z-index: 200;
+}
+
+.toggle-btn img {
+	position: absolute;
+	width: 80%;  /* 크기 조정: 너무 큰 경우 비율 조정 */
+    height: 80%; /* 크기 조정: 너무 큰 경우 비율 조정 */
+    object-fit: contain;
+    transform: scale(1);
+    margin: 0; /* 마진 제거하여 정확한 위치 지정 */
+    padding: 0; /* 패딩 제거하여 정확한 위치 지정 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 별 아이콘을 위한 컨테이너 추가 */
+.toggle-btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 1em;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+}
+
+.header h1 {
+    position: relative;
+    font-size: clamp(80px, 25vw, 200px);
+    font-weight: lighter;
+    letter-spacing: -0.02em;
+    line-height: 0.85;
+    transform: rotateY(60deg);
+    transform-origin: bottom left;
+    will-change: transform;
+    opacity: 1;
+    color: #B78C56;
+    font-family: 'Emblema One', cursive;
+}
+
+.site-info {
+    position: absolute; /* 절대 위치로 띄우기 */
+    top: 0.5em; /* 위에서 2em 거리 */
+    left: 1em; /* 왼쪽에서 2em 거리 */
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.site-logo {
+    width: 250px; /* 로고 너비 조정 */
+    height: auto; /* 세로는 비율 맞추기 */
+    object-fit: contain;
+}
+
+/* main4.css */
+#main4-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#main4-content body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #042D29;
+    font-family: "PP Neue Montreal";
+}
+
+#main4-content .cursor {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: #D4C9B4;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none; 
+}
+
+#main4-content .wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#main4-content nav {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    padding: 2em;
+}
+
+#main4-content .nav-item:nth-child(1) {
+    flex: 3;
+}
+
+#main4-content .nav-item:nth-child(2) {
+    flex: 2;
+    display: flex;
+}
+
+#main4-content .nav-item:nth-child(2) p {
+    flex: 1;
+}
+
+#main4-content p {
+    font-weight: 500;
+    color: #D4C9B4;
+    opacity: 0.5;
+    letter-spacing: 0;
+}
+
+#main4-content video,
+#main4-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#main4-content .video-container, #main4-content .img-container {
+    position: absolute;
+    width: 700px;
+    height: 500px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* 완전히 새로 디자인한 미니 네비게이션 바 */
+.mini-nav {
+    position: fixed;
+    right: 10px; /* 화면 오른쪽에서 10px 떨어짐 */
+    top: 50%; /* 화면 중앙에 위치 */
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    z-index: 200;
+    width: 80px; /* 고정 너비 설정 */
+}
+
+.mini-nav-item {
+    background-color: #741102;
+    padding: 15px 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.mini-nav-item:hover {
+    background-color: #8a1503;
+    transform: translateX(-5px); /* 호버 시 약간 왼쪽으로 이동 */
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.mini-nav-item a {
+    color: #D4C9B4;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Playfair Display", "Didot", "Times New Roman", serif;
+    letter-spacing: 1px;
+    display: block;
+    width: 100%;
+}
+
+/* 아이콘 추가 */
+.mini-nav-item a::before {
+    content: '★';
+    display: block;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+/* 각 메뉴 아이템에 다른 아이콘 적용 */
+.mini-nav-item.login a::before {
+    content: '⟩';
+}
+
+.mini-nav-item.logout a::before {
+    content: '⟨';
+}
+
+.mini-nav-item.mypage a::before {
+    content: '⚙';
+}
+
+/* 로그인 폼 팝업 스타일 */
+.login-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 350px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #741102;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #590d01;
+}

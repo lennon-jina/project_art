@@ -1,0 +1,315 @@
+/* 스크린 필터 효과 - 전체 화면에 강한 노이즈 효과 */
+html::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 10000;
+    mix-blend-mode: overlay;
+}/* 화면 전체에 적용되는 노이즈 필터 강화 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.25; /* 노이즈 강도 더 증가 */
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: soft-light;
+}/* 추가 노이즈 레이어 제거 */
+.moon-wrapper::after {
+    display: none; /* 문 래퍼 노이즈 필터 비활성화 */
+}.moon__img {
+    /* 이미지 필터 제거 */
+}/* 빈티지 필터 효과 강화 - 전체 화면에 적용 */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            rgba(0, 0, 0, 0.08) 1px, 
+            transparent 2px, 
+            transparent 3px
+        ); /* 스캔라인 효과 더 강화 */
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: multiply;
+}/* 아트 갤러리 스타일 요소 추가 */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(183, 140, 86, 0.3); /* 연한 금색 내부 테두리 */
+    pointer-events: none; /* 클릭 이벤트 방해 방지 */
+    z-index: 1;
+}@media (max-width: 768px) {
+    .moon-wrapper {
+        flex-direction: column;
+        padding: 5% 0;
+    }
+    
+    .moon {
+        width: 70%;
+        margin-bottom: 30px;
+    }
+    
+    .text-section {
+        width: 90%;
+    }
+    
+    .nav__link--text {
+        font-size: 8vw;
+    }
+    
+    .container {
+        border-width: 10px; /* 모바일에서는 테두리 두께 줄임 */
+    }
+}@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap");
+
+@font-face {
+    font-family: "MonumentExtended-Ultrabold";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/MonumentExtended-Ultrabold.woff") format("woff"),
+        url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/61488/MonumentExtended-Ultrabold.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+    background-color: #042D29; /* 배경색을 #042D29로 변경 */
+}
+
+/* 색상 필터 - 컨테이너만 적용 */
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    background: #042D29;
+    border: 15px solid #B78C56;
+    box-sizing: border-box;
+}
+
+.container__base {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background: #741102; /* 애니메이션 배경색을 #741102로 변경 */
+    transform: scaleX(0); /* 초기 상태에서는 보이지 않게 설정 */
+    transform-origin: top right;
+}
+
+.moon-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 2;
+    margin: 20px; /* 내부 여백 추가 */
+}
+
+.moon {
+    position: relative;
+    width: 40%;
+    aspect-ratio: 1/1;
+    max-height: 80vh;
+}
+
+.moon__svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Text section is now our menu section */
+.text-section {
+    width: 50%;
+    font-family: "MonumentExtended-Ultrabold", sans-serif;
+    padding-right: 20px; /* 텍스트 섹션에 여백 추가 */
+}
+
+/* Basic menu styles */
+.nav__link {
+    display: block;
+    margin-bottom: 20px; /* 여백 증가 */
+    text-decoration: none;
+    color: white; /* 색상 변경 */
+    overflow: hidden;
+}
+
+.nav__link--text {
+    grid-area: 1/1;
+    transition: opacity 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+        transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    /* 배경과 패딩 제거하여 텍스트만 남김 */
+    display: inline-block;
+    font-style: italic;
+    font-size: 5vw;
+    line-height: 1;
+    letter-spacing: 2.1px;
+    color: white; /* 텍스트 색상을 흰색으로 변경 */
+    position: relative; /* 밑줄을 위한 위치 설정 */
+}
+
+.nav__link--text .word {
+    white-space: nowrap;
+}
+
+.nav__link--text .char {
+    display: inline-block;
+    transform-origin: 50% 50% 0.4em;
+    transition: transform 0.5s cubic-bezier(0.5, 0, 0, 1);
+    transition-delay: calc(0ms + var(--char-index) * 25ms);
+    backface-visibility: hidden;
+    margin: 0 -0.02em;
+}
+
+.nav__link--wrapper {
+    display: grid;
+    transform-origin: left;
+}
+
+.nav__link--text:nth-child(1) {
+    font-family: "Playfair Display";
+    font-weight: 500;
+}
+
+.nav__link--text:nth-child(2) {
+    font-family: "Roboto";
+    font-weight: 500;
+    opacity: 0;
+}
+
+.nav__link--text:nth-child(2) .char {
+    transform: rotate3d(1, -0.5, 0, 90deg);
+}
+
+.nav__link:hover .nav__link--wrapper {
+    transform: translateX(0); /* 이동 효과 제거 */
+}
+
+.nav__link:hover .nav__link--text:nth-child(1) {
+    opacity: 0;
+}
+
+.nav__link:hover .nav__link--text:nth-child(1) .char {
+    transform: rotate3d(1, 0.3, 0, -90deg);
+}
+
+.nav__link:hover .nav__link--text:nth-child(2) {
+    opacity: 1;
+}
+
+.nav__link:hover .nav__link--text:nth-child(2) .char {
+    transform: rotate3d(0, 0, 0, 90deg);
+}
+
+/* 호버 시 가운데 줄 추가 */
+.nav__link--text:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: white;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.nav__link:hover .nav__link--text:nth-child(2)::after {
+    transform: scaleX(1);
+}
+
+.moon__txt-overlay {
+    fill: rgba(0, 0, 0, 0.6);
+}
+
+/* Social links */
+.support {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+    display: flex;
+    z-index: 3;
+}
+
+.support a {
+    margin: 0 10px;
+    color: #fff;
+    font-size: 1.8rem;
+    backface-visibility: hidden;
+    transition: all 150ms ease;
+    text-decoration: none;
+}
+
+.support a:hover {
+    transform: scale(1.1);
+}
+
+.support a:focus {
+    outline: none;
+    border: none;
+}
+
+/* 노이즈 필터 제거 */
+.container::after {
+    display: none; /* 컨테이너 노이즈 필터 비활성화 */
+}
+
+/* Splitting.js styles */
+.splitting .char {
+    display: inline-block;
+}
+
+.splitting .word {
+    white-space: nowrap;
+}

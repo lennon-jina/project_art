@@ -1,0 +1,503 @@
+/* 전역 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background-color: #929079;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+    width: 250px;
+    background-color: #042D29;
+    padding: 20px 0;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+.logo img {
+  width: 180px;
+  height: 100px;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+.logo h2 {
+    color: #fff;
+    font-size: 18px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    padding: 10px 20px;
+    margin-bottom: 5px;
+}
+
+.menu li a {
+    color: #ccc;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.menu li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.menu li.active {
+    background-color: rgba(65, 105, 225, 0.2);
+    border-left: 3px solid #4169e1;
+}
+
+.menu li.active a, .menu li a:hover {
+    color: #fff;
+}
+
+.menu li.logout {
+    margin-top: 50px;
+}
+
+.menu li.logout a {
+    color: #f5ce56;
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #e4e4da;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.header h1 {
+    font-size: 24px;
+    color: #042D29;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info span {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+.user-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 프로필 섹션 */
+.profile-section {
+    background-color: #dfd2a2;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    position: relative;
+    margin-right: 20px;
+}
+
+.profile-avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.change-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #4169e1;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.profile-details h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.user-id {
+    font-size: 14px;
+    color: #aaa;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.email, .join-date {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* 정보 수정 섹션 */
+.info-section {
+    background-color: #dfd2a2;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.info-section h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #25330F;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    background-color: #408080;
+    border: 1px solid #408080;
+    border-radius: 5px;
+    color: #042D29;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4169e1;
+}
+
+.form-group input[readonly] {
+    background-color: #e4e4da;
+    cursor: not-allowed;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.primary-btn {
+    background-color: #4169e1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background-color: #3558c8;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: #ccc;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.secondary-btn:hover {
+    background-color: rgba(204, 204, 204, 0.1);
+}
+
+/* 나의 칭호 섹션 */
+.title-section {
+    background-color: #dfd2a2;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.title-section h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.titles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.title-badge {
+    background-color: #042D29;
+    border-radius: 20px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 200px;
+}
+
+.title-badge.active {
+    background-color: rgba(65, 105, 225, 0.2);
+    border: 1px solid #4169e1;
+}
+
+.title-name {
+    font-weight: 500;
+}
+
+.active-badge {
+    background-color: #4169e1;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 12px;
+    margin: 0 10px;
+}
+
+.title-select-btn {
+    background-color: #e4e4da;
+    border: 1px solid #741102;
+    color: #741102;
+    border-radius: 4px;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.title-select-btn:hover {
+    background-color: #4169e1;
+    border-color: #4169e1;
+    color: white;
+}
+
+.no-titles {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #e4e4da;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.cancel-btn {
+    margin-right: auto;
+}
+
+/* 알림 메시지 스타일 */
+.alert-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff6b6b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 2000;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-avatar {
+        margin: 0 0 20px 0;
+    }
+    
+    .titles-container {
+        justify-content: center;
+    }
+}
+
+/* 내 정보 / 나의 칭호 제목 색상 */
+.info-section h3,
+.title-section h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #042D29; /* 원하는 색 */
+    font-weight: bold;
+}
+
+/* 정지나 닉네임 색상 */
+.profile-details h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #042D29; /* 원하는 색 */
+    font-weight: bold;
+}
+
+/* 정보 수정 버튼 */
+.primary-btn {
+    background-color: #741102;
+    color: white;
+}
+.primary-btn:hover {
+    background-color: #741102;
+}
+
+/* 비밀번호 변경 버튼 */
+.secondary-btn {
+    background-color: #e4e4da;
+    color: #741102;
+    border: 1px solid #741102;
+}
+.secondary-btn:hover {
+    background-color: #d6d6c2;
+}
+
+.user-id {
+    color: #515756; /* @아이디 색깔 */
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.email {
+    color: #515756; /* 이메일 색깔 */
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.join-date {
+    color: #515756; /* 가입일 색깔 */
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.user-info span {
+    color: #f5ce56; /* 예: 진한 초록색 계열 */
+    font-weight: bold; /* 글씨를 더 또렷하게! */
+}
+
+.user-name {
+    color: #042D29;
+    font-weight: bold;
+}
+
+/* 프로필 섹션, 정보 섹션, 타이틀 섹션 색상 변경 */
+.profile-section,
+.info-section,
+.title-section {
+    background-color: #e9e3cc; /* 더 옅은 색상으로 변경 */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* 로고 링크 스타일 */
+.logo a {
+    display: block;
+    text-decoration: none;
+}
+
+.logo img:hover {
+    opacity: 0.9; /* 호버 효과 추가 */
+    cursor: pointer;
+}

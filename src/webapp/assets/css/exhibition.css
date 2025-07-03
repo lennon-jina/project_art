@@ -1,0 +1,1003 @@
+/* 폰트 및 프레임 스타일 업데이트 - exhibition.css 파일에 추가하세요 */
+
+/* Google Noto Serif Korean 폰트 추가 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap');
+
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif KR', 'Oswald', serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #D4C9B4;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* 제목 폰트도 변경 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif KR', 'Oswald', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* 상단 텍스트 출력 문제 해결 */
+body > *:not(header):not(.main-container):not(.hero-section):not(footer):not(script) {
+    display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+p {
+    font-family: 'Noto Serif KR', serif;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff0000;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1200px; /* 전체 너비 축소 */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 헤더 스타일 */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background-color: #042D29;
+    width: 100%;
+    height: 60px;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav ul li {
+    margin: 0 15px;
+}
+
+.main-nav ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.main-nav ul li a:hover {
+    color: #741102;
+    text-decoration: none;
+}
+
+.hamburger-menu {
+    cursor: pointer;
+    color: #ff0000;
+    display: flex;
+    align-items: center;
+}
+
+/* 컴팩트 전시회 리스트 스타일 (새로 추가) */
+.compact-exhibition-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* 아이템 간격 줄임 */
+    margin-bottom: 50px;
+}
+
+.compact-exhibition-item {
+    display: grid;
+    grid-template-columns: 250px 1fr 180px; /* 이미지 너비 줄임 */
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px; /* 패딩 줄임 */
+}
+
+.exhibition-image-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 160px; /* 이미지 높이 줄임 */
+}
+
+.exhibition-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.exhibition-image-container:hover img {
+    transform: scale(1.05);
+}
+
+/* 캡션 제거 */
+.image-caption {
+    display: none;
+}
+
+.exhibition-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 간격 줄임 */
+}
+
+.exhibition-title-area {
+    margin-bottom: 5px;
+}
+
+.exhibition-title {
+    font-size: 24px; /* 글자 크기 줄임 */
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0;
+}
+
+.exhibition-genre-area {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.starts-ends {
+    color: #777;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.genre-value {
+    font-size: 14px;
+    color: #333;
+}
+
+.action-area {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.discover-more-btn {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 15px; /* 패딩 줄임 */
+    font-size: 13px; /* 글자 크기 줄임 */
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.discover-more-btn:hover {
+    color: #ff0000;
+}
+
+/* 리스트 타이틀 */
+.list-title {
+    font-size: 30px; /* 글자 크기 줄임 */
+    margin-bottom: 30px; /* 마진 줄임 */
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 히어로 섹션 */
+.hero-section {
+    position: relative;
+    height: 350px; /* 높이 줄임 */
+    background-image: url('/assets/images/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 30px; /* 마진 줄임 */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 40px; /* 위치 조정 */
+    left: 40px;
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 60px; /* 글자 크기 줄임 */
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+/* 갤러리 섹션 */
+.gallery-section {
+    margin-bottom: 50px; /* 마진 줄임 */
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    gap: 15px; /* 간격 줄임 */
+    padding: 15px 0;
+}
+
+.photo-frame {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    border-radius: 8px; /* 모서리 라운드 처리 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* 그림자 효과 */
+    background-color: #F5F1E8; /* 밝은 오트밀/베이지 색상 */
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.08); /* 미세한 테두리 */
+    padding: 8px; /* 내부 패딩 추가 */
+}
+
+.photo-frame:hover {
+    transform: translateY(-5px); /* 마우스 오버시 약간 위로 올라가는 효과 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 마우스 오버시 그림자 강화 */
+}
+
+/* 이미지 스타일 수정 */
+.photo-frame img {
+    width: 100%;
+    height: calc(100% - 30px); /* 제목을 위한 공간 확보 */
+    object-fit: contain;
+    transition: transform 0.5s;
+    border-radius: 4px; /* 이미지 모서리 약간 둥글게 */
+    padding: 5px;
+}
+
+/* 이미지 컨테이너 */
+.photo-frame a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/* 포토 타이틀 스타일 개선 */
+.photo-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #333;
+    background-color: rgba(245, 241, 232, 0.9); /* 타이틀 배경도 오트밀 색상으로 맞춤 */
+    border-top: 1px solid #E8E4DA; /* 테두리 색상도 조정 */
+    font-family: 'Noto Serif KR', serif; /* 타이틀에도 Noto Serif Korean 적용 */
+}
+
+/* 포토 그리드 간격 조정 */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    gap: 20px; /* 간격 약간 늘림 */
+    padding: 15px 0;
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+    .photo-frame {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-frame {
+        height: 200px;
+    }
+}
+
+.photo-frame:hover img {
+    transform: scale(1.05);
+}
+
+/* 카테고리 필터 - 리스트 페이지에서는 사용하지 않음 */
+.categories {
+    margin-bottom: 40px;
+    display: none; /* 숨김 처리 */
+}
+
+.category-filter ul {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.category-filter ul li {
+    margin-right: 30px;
+    padding-bottom: 10px;
+}
+
+.category-filter ul li a {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.category-filter ul li.active {
+    border-bottom: 3px solid #ff0000;
+}
+
+.category-filter ul li.active a {
+    font-weight: 700;
+}
+
+/* 전시회 목록 */
+.current-exhibitions {
+    margin-bottom: 50px; /* 마진 줄임 */
+}
+
+.current-exhibitions h2 {
+    font-size: 26px; /* 글자 크기 줄임 */
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.current-exhibitions h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #ff0000;
+}
+
+.exhibition-list-section {
+    margin-bottom: 50px; /* 마진 줄임 */
+}
+
+/* 기존 리스트 아이템 스타일 (사용 안 함) */
+.exhibition-item {
+    display: none;
+}
+
+/* 모던 리스트 아이템 스타일 (사용 안 함) */
+.modern-exhibition-item {
+    display: none;
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.page-link {
+    margin: 0 3px;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    color: #333;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover {
+    background-color: #f0f0f0;
+    color: #000;
+    text-decoration: none;
+}
+
+.page-link.current {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.page-link.first-page,
+.page-link.prev-page,
+.page-link.next-page,
+.page-link.last-page {
+    background-color: #f9f9f9;
+}
+
+/* 전시회 상세 페이지 */
+.exhibition-detail-section {
+    margin-bottom: 50px; /* 마진 줄임 */
+    padding-top: 20px; /* 패딩 줄임 */
+}
+
+.exhibition-header {
+    margin-bottom: 25px; /* 마진 줄임 */
+}
+
+.exhibition-header h1 {
+    font-size: 30px; /* 글자 크기 줄임 */
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 8px; /* 패딩 줄임 */
+    background-color: #333;
+    color: #fff;
+    font-size: 12px; /* 글자 크기 줄임 */
+    text-transform: uppercase;
+}
+
+.status.current {
+    background-color: #4caf50;
+}
+
+.status.upcoming {
+    background-color: #ff9800;
+}
+
+.status.ended {
+    background-color: #9e9e9e;
+}
+
+.exhibition-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; /* 간격 줄임 */
+    margin-bottom: 30px; /* 마진 줄임 */
+}
+
+.exhibition-image {
+    width: 100%;
+    height: auto;
+    max-height: 450px; /* 높이 줄임 */
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.exhibition-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    color: #999;
+    font-size: 16px; /* 글자 크기 줄임 */
+    min-height: 250px; /* 높이 줄임 */
+}
+
+.info-group {
+    margin-bottom: 25px; /* 마진 줄임 */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px; /* 패딩 줄임 */
+}
+
+.info-group:last-child {
+    border-bottom: none;
+}
+
+.info-group h3 {
+    font-size: 15px; /* 글자 크기 줄임 */
+    margin-bottom: 8px; /* 마진 줄임 */
+    color: #333;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.info-group p {
+    font-size: 14px; /* 글자 크기 줄임 */
+    color: #555;
+}
+
+.introduction {
+    line-height: 1.7; /* 줄간격 줄임 */
+    font-size: 14px; /* 글자 크기 줄임 */
+    color: #555;
+}
+
+.guidelines {
+    font-size: 13px; /* 글자 크기 줄임 */
+    color: #666;
+    background-color: #f9f9f9;
+    padding: 12px; /* 패딩 줄임 */
+    border-left: 3px solid #ddd;
+    margin-top: 8px; /* 마진 줄임 */
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px; /* 간격 줄임 */
+    margin-top: 25px; /* 마진 줄임 */
+}
+
+.btn {
+    padding: 8px 15px; /* 패딩 줄임 */
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    font-size: 13px; /* 글자 크기 줄임 */
+}
+
+.btn:hover {
+    color: #ff0000;
+}
+
+.btn.primary {
+    background-color: #000;
+}
+
+.btn.secondary {
+    background-color: #333;
+}
+
+.btn.share-btn {
+    background-color: #000;
+}
+
+.back-to-list {
+    text-align: center;
+    margin-top: 30px; /* 마진 줄임 */
+    margin-bottom: 50px; /* 마진 줄임 */
+}
+
+/* 관련 전시회 섹션 */
+.related-exhibitions {
+    margin-bottom: 50px; /* 마진 줄임 */
+}
+
+.related-exhibitions h2 {
+    font-size: 26px; /* 글자 크기 줄임 */
+    margin-bottom: 15px; /* 마진 줄임 */
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.related-exhibitions h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #ff0000;
+}
+
+/* 로딩 애니메이션 */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* 높이 줄임 */
+    width: 100%;
+    color: #999;
+}
+
+.loading::after {
+    content: '';
+    width: 18px; /* 크기 줄임 */
+    height: 18px; /* 크기 줄임 */
+    border: 3px solid #ddd;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: loading 1s infinite linear;
+    margin-left: 10px;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 결과 없음 */
+.no-results, .no-exhibition {
+    text-align: center;
+    padding: 40px 0; /* 패딩 줄임 */
+}
+
+.no-results p, .no-exhibition p {
+    margin-bottom: 15px; /* 마진 줄임 */
+    font-size: 16px; /* 글자 크기 줄임 */
+    color: #666;
+}
+
+/* 푸터 */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 0 20px; /* 패딩 줄임 */
+    margin-top: 50px; /* 마진 줄임 */
+}
+
+.footer-content {
+    max-width: 1200px; /* 너비 줄임 */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-sections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px; /* 간격 줄임 */
+    margin-bottom: 35px; /* 마진 줄임 */
+}
+
+.footer-column h3 {
+    margin-bottom: 15px; /* 마진 줄임 */
+    font-size: 15px; /* 글자 크기 줄임 */
+    letter-spacing: 1px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px; /* 마진 줄임 */
+}
+
+.footer-column ul li a {
+    color: #ccc;
+    font-size: 13px; /* 글자 크기 줄임 */
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ff0000;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px; /* 마진 줄임 */
+    font-size: 13px; /* 글자 크기 줄임 */
+    color: #ccc;
+    padding-top: 15px; /* 패딩 줄임 */
+    border-top: 1px solid #333;
+}
+
+.copyright {
+    font-size: 11px; /* 글자 크기 줄임 */
+    color: #666;
+    text-align: center;
+    padding-top: 15px; /* 패딩 줄임 */
+    border-top: 1px solid #333;
+}
+
+.loading-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    color: #999;
+    margin: 20px 0;
+}
+
+.loading-more::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ddd;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: loading 1s infinite linear;
+    margin-left: 10px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 1024px) {
+    .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .footer-sections {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .compact-exhibition-item {
+        grid-template-columns: 200px 1fr 150px;
+    }
+}
+
+@media (max-width: 768px) {
+	
+	.pagination {
+        flex-wrap: wrap;
+    }
+    
+    .page-link {
+        margin: 2px;
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+    
+    .main-header {
+        padding: 0 15px;
+    }
+    
+    .main-nav {
+        display: none; /* 모바일에서는 햄버거 메뉴로 대체 */
+    }
+    
+    .hamburger-menu {
+        display: block;
+    }
+    
+    .hero-content h1 {
+        font-size: 50px; /* 글자 크기 줄임 */
+    }
+    
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px; /* 간격 줄임 */
+    }
+    
+    .exhibition-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .exhibition-image {
+        max-height: 350px; /* 높이 줄임 */
+        margin-bottom: 15px; /* 마진 줄임 */
+    }
+    
+    .exhibition-header h1 {
+        font-size: 26px; /* 글자 크기 줄임 */
+    }
+    
+    .footer-info {
+        flex-direction: column;
+        gap: 15px; /* 간격 줄임 */
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+        margin-bottom: 8px; /* 마진 줄임 */
+        text-align: center;
+    }
+    
+    .exhibition-title {
+        font-size: 22px; /* 글자 크기 줄임 */
+    }
+    
+    .compact-exhibition-item {
+        grid-template-columns: 1fr;
+        gap: 12px; /* 간격 줄임 */
+    }
+    
+    .exhibition-image-container {
+        height: 180px; /* 이미지 높이 조정 */
+    }
+    
+    .action-area {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 0 12px; /* 패딩 줄임 */
+    }
+    
+    .hero-content h1 {
+        font-size: 36px; /* 글자 크기 줄임 */
+    }
+    
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-filter ul {
+        flex-direction: column;
+    }
+    
+    .category-filter ul li {
+        margin-right: 0;
+        margin-bottom: 8px; /* 마진 줄임 */
+    }
+    
+    .exhibition-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .footer-sections {
+        grid-template-columns: 1fr;
+    }
+    
+    .list-title {
+        font-size: 24px; /* 글자 크기 줄임 */
+    }
+    
+    .exhibition-image-container {
+        height: 160px; /* 이미지 높이 조정 */
+    }
+}
+
+.hero-section {
+    background-image: url('/assets/img/exhibition.png'); /* 이미지 경로 수정 */
+    background-size: cover;          /* 비율 깨지지 않고 꽉 채워 */
+    background-position: center;     /* 중앙 정렬 */
+    background-repeat: no-repeat;    /* 반복 없음 */
+    height: 400px;                   /* 필요에 따라 조정 가능 */
+    position: relative;
+}
+
+/* 글자(EXHIBITIONS) 스타일 추가하면 더 예뻐져 */
+.hero-content h1 {
+    color: white;            /* 글자색 흰색 */
+    font-size: 64px;          /* 글자 크기 */
+    text-align: center;       /* 가운데 정렬 */
+    padding-top: 120px;       /* 위쪽 여백으로 위치 조정 */
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* 글자 가독성 높이기 */
+}
+
+/* MENU 버튼 스타일 수정 */
+.top-menu-button {
+    display: inline-block;
+    background-color: #741102 !important; /* 색상 #741102로 변경 */
+    color: #fff !important;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+    z-index: 1001;
+}
+
+.top-menu-button:hover {
+    background-color: #5a0d01 !important; /* hover 색상 약간 어둡게 */
+    transform: scale(1.05);
+    color: #fff !important;
+}
+
+/* 포스터 프레임 스타일 - exhibition.css 파일에 추가하세요 */
+
+/* 포토 프레임에 그림자와 라운드 처리 추가 */
+.photo-frame {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    border-radius: 8px; /* 모서리 라운드 처리 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* 그림자 효과 */
+    background-color: #fff; /* 배경색 하얀색 */
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.08); /* 미세한 테두리 */
+    padding: 8px; /* 내부 패딩 추가 */
+}
+
+.photo-frame:hover {
+    transform: translateY(-5px); /* 마우스 오버시 약간 위로 올라가는 효과 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 마우스 오버시 그림자 강화 */
+}
+
+/* 이미지 컨테이너 */
+.photo-frame a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/* 이미지 스타일 수정 */
+.photo-frame img {
+    width: 100%;
+    height: calc(100% - 30px); /* 제목을 위한 공간 확보 */
+    object-fit: contain;
+    transition: transform 0.5s;
+    border-radius: 4px; /* 이미지 모서리 약간 둥글게 */
+    padding: 5px;
+}
+
+/* 포토 타이틀 스타일 개선 */
+.photo-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid #eee;
+}
+
+/* 포토 그리드 간격 조정 */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    gap: 20px; /* 간격 약간 늘림 */
+    padding: 15px 0;
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+    .photo-frame {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-frame {
+        height: 200px;
+    }
+}
