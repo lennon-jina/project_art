@@ -7,12 +7,6 @@
 
 ---
 
-## 🌐 데모 페이지
-
-🔗 [Demo Link]() (배포한 경우 링크 추가)
-
----
-
 ## 🖼 주요 기능
 
 ### 1. 갤러리 (작품 감상)
@@ -47,17 +41,6 @@
 | 보안 | bcrypt 해시 알고리즘 |
 | 기타 | 세션 기반 인증, 비동기 처리(fetch), 예외 처리 및 fallback 구현 |
 
----
 
-## ⚙️ 설치 및 실행 방법
 
-```bash
-# 1. 가상 환경 생성 및 활성화
-python -m venv venv
-source venv/bin/activate  # Windows는 venv\Scripts\activate
 
-# 2. 필요한 패키지 설치
-pip install -r requirements.txt
-
-# 3. Flask 앱 실행
-python app.py
